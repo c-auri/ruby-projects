@@ -1,8 +1,8 @@
-def caesar(message, shift_factor)
-  shifted = message.chars.map { |char| shift(char, shift_factor) }.join
+def caesar message, shift_factor
+  message.chars.map { |char| shift(char, shift_factor) }.join
 end
 
-def shift(char, shift_factor)
+def shift char, shift_factor
   return char if char == " "
   raise Exception.new "Not a letter: #{char}" if !letter?(char)
 
@@ -11,13 +11,13 @@ def shift(char, shift_factor)
   (((char.ord - base.ord + shift_factor % 26) % 26) + base.ord).chr
 end
 
-def letter?(char)
+def letter? char
   char =~ /[A-Za-z]/
 end
 
 message = "The Caesar Cipher is unsafe and should not be used"
-enciphered = caesar(message, 5)
-deciphered = caesar(enciphered, -5)
+enciphered = caesar message, 5
+deciphered = caesar enciphered, -5
 
 p message
 p enciphered
